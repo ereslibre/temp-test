@@ -14,18 +14,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '>= 18.0'
-      - name: Build
-        if: github.event_name != 'pull_request'
-        run: |
-          yarn install --frozen-lockfile
-          yarn build
       - name: Build Preview
-        if: github.event_name == 'pull_request'
         run: |
           export BASE_URL=/pr-preview/pr-$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           yarn install --frozen-lockfile
           yarn build
       - name: Publish
+        if: github.event_name == 'pull_request'
         uses: rossjrw/pr-preview-action@v1
         with:
+          configured-domain: docs.ereslibre.net
           source-dir: ./build/
