@@ -20,12 +20,12 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://ereslibre.github.io',
+  url: 'https://docs.ereslibre.net',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/temp-test',
+  baseUrl: '/',
 
-  // GitHub p[I]ages deployment config.
+  // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
