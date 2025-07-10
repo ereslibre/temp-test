@@ -23,6 +23,6 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: rossjrw/pr-preview-action@v1
         with:
-          configured-domain: docs.ereslibre.net
+          pages-base-url: https://docs.ereslibre.net/pr-preview/
           source-dir: ./build/
-          target-branch: pr-previews
+          preview-branch: pr-previews
