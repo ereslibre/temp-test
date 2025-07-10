@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '>= 18.0'
-      - name: Publish
+      - name: Build
         run: |
           yarn install --frozen-lockfile
           yarn build
@@ -31,6 +31,5 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Publish
         uses: actions/deploy-pages@v4
