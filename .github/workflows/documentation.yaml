@@ -25,20 +25,7 @@ jobs:
           export BASE_URL=pr-$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           yarn install --frozen-lockfile
           yarn build
-      - name: Upload Build Artifacts
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
       - name: Publish
-        uses: actions/deploy-pages@v4
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./build/
