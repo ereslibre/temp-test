@@ -25,3 +25,4 @@ jobs:
         with:
           configured-domain: docs.ereslibre.net
           source-dir: ./build/
+          target-branch: pr-previews
