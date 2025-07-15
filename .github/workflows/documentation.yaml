@@ -1,11 +1,20 @@
 name: documentation
+
 on:
   push:
     branches:
       - main
   pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
     branches:
       - main
+
+concurrency: preview-${{ github.ref }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,3 +53,4 @@ jobs:
           preview-branch: pr-previews
           clean-exclude: pr-preview
           umbrella-dir: "${{ format('{0}-preview', github.ref_name) }}"
+          action: deploy
