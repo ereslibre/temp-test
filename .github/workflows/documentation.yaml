@@ -45,12 +45,10 @@ jobs:
           clean-exclude: main-preview
           umbrella-dir: pr-preview
       - name: Publish (main)
-        uses: rossjrw/pr-preview-action@v1
+        uses: JamesIves/github-pages-deploy-action@v4
         if: github.event_name == 'push'
         with:
-          pages-base-url: docs.ereslibre.net
-          source-dir: ./build/
-          preview-branch: pr-previews
-          clean-exclude: pr-preview
-          umbrella-dir: "${{ format('{0}-preview', github.ref_name) }}"
-          action: deploy
+          folder: build
+          branch: pr-previews
+          target-folder: main-preview
+          commit-message: "Deploy preview for ${{ github.ref_name }}"
