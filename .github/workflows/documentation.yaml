@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - release/*
   pull_request:
     types:
       - opened
@@ -46,9 +47,17 @@ jobs:
           umbrella-dir: pr-preview
       - name: Publish (main)
         uses: JamesIves/github-pages-deploy-action@v4
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref_name == 'main'
         with:
           folder: build
           branch: pr-previews
           target-folder: main-preview
+          commit-message: "Deploy preview for ${{ github.ref_name }}"
+      - name: Publish (release)
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: github.event_name == 'push' && startsWith(github.ref_name, 'release/')
+        with:
+          folder: build
+          branch: pr-previews
+          target-folder: "release-preview/${{ replace(github.ref_name, '/', '-') }}"
           commit-message: "Deploy preview for ${{ github.ref_name }}"
