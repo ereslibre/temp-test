@@ -54,4 +54,3 @@ jobs:
           clean-exclude: pr-preview
           umbrella-dir: "${{ format('{0}-preview', github.ref_name) }}"
           action: deploy
-          comment: "Deploy preview for ${{ format('{0}-preview', github.ref_name) }} branch"
